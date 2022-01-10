@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
 
   try {
-    const [activity, created] = await Activity.findOrCreate({
+    const [activity] = await Activity.findOrCreate({
       where: {
         name,
         difficulty,
