@@ -1,0 +1,20 @@
+.landing {
+  background-image: url("./fondo.jpeg");
+  background-position-y: center center;
+  background-size: cover;
+  height: 100vh;
+}
+
+.title {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  background-color: rgba(173, 171, 169, 0.075);
+  color: rgb(250, 251, 253);
+}
+
+.btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

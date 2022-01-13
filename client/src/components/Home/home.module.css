@@ -1,0 +1,30 @@
+.home {
+  background-image: url("../LandingPage/fondo.jpeg");
+  background-position-y: center center;
+  background-size: cover;
+  height: 97vh;
+  color: rgba(49, 48, 48, 0.603);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  order: 6;
+}
+
+.cards {
+  /* box-shadow: 15px;
+  background-color: rgba(96, 190, 190, 0.164);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem;
+  border: 4px solid rgba(112, 112, 187, 0.281);
+  gap: 10px; */
+}
+
+.paged {
+  position: relative;
+  justify-content: center;
+  margin-bottom: 10px;
+  height: 3em;
+}

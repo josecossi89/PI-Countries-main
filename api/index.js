@@ -32,7 +32,7 @@ conn.sync({ force: true }).then(() => {
       Country.create({
         id: country.cca3,
         name: country.name.common,
-        flags: country.flags.svg,
+        flags: country.flags.png,
         continent: country.region,
         capital: country.capital ? country.capital : [],
         area: country.area,

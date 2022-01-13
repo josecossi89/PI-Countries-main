@@ -1,0 +1,10 @@
+.paged {
+  display: flex;
+  flex-direction: row;
+}
+
+.number {
+  border: thick solid rgba(238, 229, 229, 0.623);
+  border-radius: 999px;
+  background-color: rgba(108, 109, 109, 0);
+}
