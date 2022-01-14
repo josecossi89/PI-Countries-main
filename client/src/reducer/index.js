@@ -4,6 +4,7 @@ import {
   FILTER_ACTIVITIES,
   ORDER_BY_NAME,
   SORT_BY_POPULATION,
+  GET_COUNTRIES_BY_NAME,
 } from "../actions/constants";
 
 const initialState = {
@@ -93,6 +94,13 @@ function rootReducer(state = initialState, action) {
         ...state,
         countries: ordPob,
       };
+
+    case GET_COUNTRIES_BY_NAME: {
+      return {
+        ...state,
+        countries: action.payload,
+      };
+    }
 
     default:
       return state;

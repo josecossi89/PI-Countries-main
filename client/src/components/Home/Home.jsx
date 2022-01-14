@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Paged from "../Paged/Paged";
+import Search from "../Search/Search";
 import {
   getCountries,
   filterByContinent,
@@ -78,7 +79,7 @@ export default function Home() {
           <option value="Oceania">Oceania</option>
         </select>
       </div>
-
+      <Search />
       <div>
         <select className={Styles.select} onChange={(e) => handleSort(e)}>
           <option value="Orden">Orden Alfabetico</option>
