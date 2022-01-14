@@ -1,7 +1,10 @@
 import {
   GET_COUNTRIES,
   FILTER_BY_CONTINENT,
-  ACTIVITY_FILTER,
+  FILTER_ACTIVITIES,
+  ORDER_BY_NAME,
+  SORT_BY_POPULATION,
+  GET_COUNTRIES_BY_NAME,
 } from "./constants";
 import axios from "axios";
 
@@ -16,6 +19,22 @@ export function getCountries() {
   };
 }
 
+//get info for name
+export function getCountryByName(name) {
+  return async function (dispatch) {
+    try {
+      let countries = await axios.get(
+        "http://localhost:3001/countries?name=" + name
+      );
+      return dispatch({
+        type: GET_COUNTRIES_BY_NAME,
+        payload: countries.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 export function filterByContinent(payload) {
   return {
     type: FILTER_BY_CONTINENT,
@@ -23,9 +42,23 @@ export function filterByContinent(payload) {
   };
 }
 
-export function activityFilter(payload) {
+export function filterActivity(payload) {
   return {
-    type: ACTIVITY_FILTER,
+    type: FILTER_ACTIVITIES,
+    payload,
+  };
+}
+
+export function orderByName(payload) {
+  return {
+    type: ORDER_BY_NAME,
+    payload,
+  };
+}
+
+export function orderByPopulation(payload) {
+  return {
+    type: SORT_BY_POPULATION,
     payload,
   };
 }

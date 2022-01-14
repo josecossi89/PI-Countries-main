@@ -28,3 +28,15 @@
   margin-bottom: 10px;
   height: 3em;
 }
+
+.recarga {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.refresh {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 25px;
+}

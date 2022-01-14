@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import Paged from "../Paged/Paged";
-import { getCountries, filterByContinent } from "../../actions/index.js";
+import {
+  getCountries,
+  filterByContinent,
+  orderByName,
+  orderByPopulation,
+} from "../../actions/index.js";
 import Styles from "./home.module.css";
 
 export default function Home() {
@@ -12,7 +17,7 @@ export default function Home() {
   const allCountries = useSelector((state) => state.countries);
   const [currentPage, setCurrentPage] = useState(1);
   const [orden, setOrden] = useState("");
-  const [countriesPage, setCountriesPage] = useState(9);
+  const [countriesPage, setCountriesPage] = useState(10);
   const indexOfLastCountries = currentPage * countriesPage;
   const indexOfFirstCountries = indexOfLastCountries - countriesPage;
   const currentCountries = allCountries.slice(
@@ -38,6 +43,23 @@ export default function Home() {
     dispatch(filterByContinent(e.target.value));
   }
 
+  function handleFilterByActivities(e) {
+    dispatch(filterByContinent(e.target.value));
+  }
+
+  function handleSort(e) {
+    e.preventDefault();
+    dispatch(orderByName(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  }
+
+  function handleSortPopulation(e) {
+    e.preventDefault();
+    dispatch(orderByPopulation(e.target.value));
+    setCurrentPage(1);
+    setOrden(`Ordenado ${e.target.value}`);
+  }
   //render
   return (
     <div className="{Styles.home}">
@@ -58,7 +80,7 @@ export default function Home() {
       </div>
 
       <div>
-        <select>
+        <select className={Styles.select} onChange={(e) => handleSort(e)}>
           <option value="Orden">Orden Alfabetico</option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
@@ -66,7 +88,12 @@ export default function Home() {
       </div>
 
       <div>
-        <select>
+        <select
+          className={Styles.select}
+          onChange={(e) => {
+            handleSortPopulation(e);
+          }}
+        >
           <option value="Poblacion">Poblacion</option>
           <option value="ASC">Ascendente</option>
           <option value="DES">Descendente</option>
@@ -78,11 +105,23 @@ export default function Home() {
           handleClick(e);
         }}
       >
-        <Link to="/activity">
-          <button>Crear Actividad Turistica</button>
-        </Link>
         Cargar Todos los Paises
       </button>
+
+      <div className={Styles.recarga}>
+        <button
+          className={Styles.refresh}
+          onClick={(e) => {
+            handleClick(e);
+          }}
+        ></button>
+      </div>
+      <div className={Styles.toActivity}>
+        <Link to="/activity">
+          <button className={Styles.act}>Crear Actividad a Paises</button>
+        </Link>
+      </div>
+
       <div className={Styles.cards}>
         {currentCountries?.map((country) => {
           return (
