@@ -25,6 +25,7 @@ export default function Search() {
         type="text"
         placeholder="Name..."
         onChange={(e) => handleInputChange(e)}
+        id="search-name-countrie"
       />
       <button
         className={Styles.btn}
