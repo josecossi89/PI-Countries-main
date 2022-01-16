@@ -10,30 +10,33 @@ export default function Search() {
 
   function handleInputChange(e) {
     e.preventDefault();
-    setName(e.target.value);
+    setName(`${e.target.value}`);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getCountryByName(name));
+    setName("");
   }
 
   return (
     <div className={Styles.search}>
-      <input
-        className={Styles.input}
-        type="text"
-        placeholder="Name..."
-        onChange={(e) => handleInputChange(e)}
-        id="search-name-countrie"
-      />
-      <button
-        className={Styles.btn}
-        type="submit"
-        onClick={(e) => handleSubmit(e)}
-      >
-        Buscar
-      </button>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <input
+          className={Styles.input}
+          type="text"
+          value={name}
+          placeholder="Search Countries..."
+          onChange={(e) => handleInputChange(e)}
+        />
+        <button
+          className={Styles.btn}
+          type="submit"
+          onClick={(e) => handleSubmit(e)}
+        >
+          Buscar
+        </button>
+      </form>
     </div>
   );
 }

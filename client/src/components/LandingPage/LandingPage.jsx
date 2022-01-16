@@ -5,15 +5,13 @@ import Styles from "./landingpage.module.css";
 export default function Landing() {
   return (
     <div className={Styles.landing}>
-      <div className={Styles.title}>
-        <h1>Bienvenido a Countries App </h1>
-      </div>
-
-      <div className={Styles.btn}>
-        <Link to="/countries">
-          <button>Acceder</button>
-        </Link>
-      </div>
+      <h1 className={Styles.h1}>Country App</h1>
+      <Link to="/countries">
+        <button className={Styles.btnlanding}>
+          <span></span>
+          <text>Acceder</text>
+        </button>
+      </Link>
     </div>
   );
 }

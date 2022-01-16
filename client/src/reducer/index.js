@@ -5,6 +5,8 @@ import {
   ORDER_BY_NAME,
   SORT_BY_POPULATION,
   GET_COUNTRIES_BY_NAME,
+  POST_ACTIVITY,
+  GET_ACTIVITY,
 } from "../actions/constants";
 
 const initialState = {
@@ -99,6 +101,17 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         countries: action.payload,
+      };
+    }
+    case GET_ACTIVITY: {
+      return {
+        ...state,
+        allActivities: action.payload,
+      };
+    }
+    case POST_ACTIVITY: {
+      return {
+        ...state,
       };
     }
 

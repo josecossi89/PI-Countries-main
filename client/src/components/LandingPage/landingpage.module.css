@@ -1,20 +1,69 @@
 .landing {
-  background-image: url("./fondo.jpeg");
-  background-position-y: center center;
-  background-size: cover;
-  height: 100vh;
+  margin-left: 490px;
+  padding-right: 100px;
+  padding-left: 100px;
+  padding-bottom: 90px;
+  /* background-color: rgba(0, 0, 0, 0.911);
+  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.616); */
 }
 
-.title {
+.h1title {
+  -webkit-text-stroke: 0.7px rgb(32, 149, 170);
+  color: rgba(243, 229, 229, 0.877);
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  background-color: rgba(173, 171, 169, 0.075);
-  color: rgb(250, 251, 253);
-}
-
-.btn {
-  display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 518px;
+}
+
+.btnlanding {
+  --width: 100%;
+  --time: 0.7s;
+
+  position: relative;
+  display: inline-block;
+  height: 1em;
+  padding-bottom: 30px;
+  padding-right: 70px;
+  padding-left: 70px;
+  padding-top: 14px;
+
+  color: white;
+  background: #222;
+  overflow: hidden;
+
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+.btnlanding text {
+  position: relative;
+  z-index: 5;
+
+  transition: color var(--time);
+}
+
+.btnlanding:hover text {
+  color: #222;
+}
+
+.btnlanding span {
+  position: absolute;
+  display: block;
+  content: "";
+  z-index: 0;
+  width: 0;
+  height: 0;
+
+  border-radius: 100%;
+  background: #fff;
+
+  transform: translate(-50%, -50%);
+  transition: width var(--time), padding-top var(--time);
+}
+
+.btnlanding:hover span {
+  width: calc(var(--width) * 2.25);
+  padding-top: calc(var(--width) * 2.25);
 }

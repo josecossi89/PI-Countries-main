@@ -17,8 +17,8 @@ export default function Home() {
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.countries);
   const [currentPage, setCurrentPage] = useState(1);
-  const [orden, setOrden] = useState("");
-  const [countriesPage, setCountriesPage] = useState(10);
+  const [setOrden] = useState("");
+  const [countriesPage] = useState(10);
   const indexOfLastCountries = currentPage * countriesPage;
   const indexOfFirstCountries = indexOfLastCountries - countriesPage;
   const currentCountries = allCountries.slice(
@@ -44,22 +44,18 @@ export default function Home() {
     dispatch(filterByContinent(e.target.value));
   }
 
-  function handleFilterByActivities(e) {
-    dispatch(filterByContinent(e.target.value));
-  }
-
   function handleSort(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    setOrden(`${e.target.value}`);
   }
 
   function handleSortPopulation(e) {
     e.preventDefault();
     dispatch(orderByPopulation(e.target.value));
     setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    setOrden(`${e.target.value}`);
   }
   //render
   return (
