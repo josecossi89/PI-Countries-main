@@ -6,6 +6,9 @@ import {
   SORT_BY_POPULATION,
   GET_COUNTRIES_BY_NAME,
   GET_ACTIVITY,
+  RESET_FILTERS,
+  GET_COUNTRY_DETAIL,
+  CLEAR_COUNTRY_DETAILS,
 } from "./constants";
 import axios from "axios";
 
@@ -41,6 +44,25 @@ export function getCountryByName(name) {
   };
 }
 
+//get info for id
+export function getCountryDetails(id) {
+  return async (dispatch) => {
+    try {
+      const details = await axios.get("http://localhost:3001/countries/" + id);
+      return dispatch({
+        type: GET_COUNTRY_DETAIL,
+        payload: details.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function clearCountryDetail() {
+  return { type: CLEAR_COUNTRY_DETAILS };
+}
+
 export function filterByContinent(payload) {
   return {
     type: FILTER_BY_CONTINENT,
@@ -69,6 +91,9 @@ export function orderByPopulation(payload) {
   };
 }
 
+export const resetFilters = () => {
+  return { type: RESET_FILTERS };
+};
 //get info activities
 export function getActivity() {
   return async function (dispatch) {

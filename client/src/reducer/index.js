@@ -7,12 +7,16 @@ import {
   GET_COUNTRIES_BY_NAME,
   POST_ACTIVITY,
   GET_ACTIVITY,
+  RESET_FILTERS,
+  GET_COUNTRY_DETAIL,
+  CLEAR_COUNTRY_DETAILS,
 } from "../actions/constants";
 
 const initialState = {
   countries: [],
   allCountries: [],
   allActivities: [],
+  countriesDetails: {},
 };
 
 function rootReducer(state = initialState, action) {
@@ -26,7 +30,7 @@ function rootReducer(state = initialState, action) {
     case FILTER_BY_CONTINENT:
       const allCountries = state.allCountries;
       const filterContinent =
-        action.payload === "All"
+        action.payload === "all"
           ? allCountries
           : allCountries.filter(
               (element) => element.continent === action.payload
@@ -74,7 +78,7 @@ function rootReducer(state = initialState, action) {
     case SORT_BY_POPULATION:
       let ordPob =
         action.payload === "ASC"
-          ? state.countries.sort(function (a, b) {
+          ? state.countries.sort((a, b) => {
               if (a.population > b.population) {
                 return 1;
               }
@@ -83,7 +87,7 @@ function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.countries.sort(function (a, b) {
+          : state.countries.sort((a, b) => {
               if (a.population > b.population) {
                 return -1;
               }
@@ -94,7 +98,7 @@ function rootReducer(state = initialState, action) {
             });
       return {
         ...state,
-        countries: ordPob,
+        allCountries: ordPob,
       };
 
     case GET_COUNTRIES_BY_NAME: {
@@ -114,6 +118,21 @@ function rootReducer(state = initialState, action) {
         ...state,
       };
     }
+    case RESET_FILTERS:
+      return {
+        ...state,
+        countries: state.countries,
+      };
+    case GET_COUNTRY_DETAIL:
+      return {
+        ...state,
+        countryDetail: action.payload,
+      };
+    case CLEAR_COUNTRY_DETAILS:
+      return {
+        ...state,
+        countryDetail: {},
+      };
 
     default:
       return state;

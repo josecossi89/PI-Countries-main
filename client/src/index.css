@@ -1,6 +1,6 @@
 body {
   /* background: url("../src/img/wp2972323.jpg"); */
-  background-size: cover;
+  /* background-size: cover;
   background-attachment: fixed;
   margin: auto;
   display: inline-block;
@@ -9,7 +9,7 @@ body {
   margin: 0;
   font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
 code {

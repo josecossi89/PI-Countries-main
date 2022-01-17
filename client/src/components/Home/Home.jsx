@@ -2,7 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import Card from "../Card/Card";
+// import Card from "../Card/Card";
+import Cards from "../Cards/Cards";
 import Paged from "../Paged/Paged";
 import Search from "../Search/Search";
 import {
@@ -10,6 +11,7 @@ import {
   filterByContinent,
   orderByName,
   orderByPopulation,
+  resetFilters,
 } from "../../actions/index.js";
 import Styles from "./home.module.css";
 
@@ -17,11 +19,11 @@ export default function Home() {
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.countries);
   const [currentPage, setCurrentPage] = useState(1);
-  const [setOrden] = useState("");
+  const [orden, setOrden] = useState("");
   const [countriesPage] = useState(10);
   const indexOfLastCountries = currentPage * countriesPage;
   const indexOfFirstCountries = indexOfLastCountries - countriesPage;
-  const currentCountries = allCountries.slice(
+  const currentCountries = allCountries?.slice(
     indexOfFirstCountries,
     indexOfLastCountries
   );
@@ -44,30 +46,53 @@ export default function Home() {
     dispatch(filterByContinent(e.target.value));
   }
 
-  function handleSort(e) {
+  // function handleFilterByActivities(e) {
+  //   dispatch(filterByContinent(e.target.value));
+  // }
+
+  function handleSortName(e) {
     e.preventDefault();
     dispatch(orderByName(e.target.value));
     setCurrentPage(1);
-    setOrden(`${e.target.value}`);
+    setOrden(`Ordenado ${e.target.value}`);
   }
 
   function handleSortPopulation(e) {
     e.preventDefault();
     dispatch(orderByPopulation(e.target.value));
     setCurrentPage(1);
-    setOrden(`${e.target.value}`);
+    setOrden(`Ordenado ${e.target.value}`);
   }
+  const onClick = (e) => {
+    e.preventDefault();
+    dispatch(getCountries());
+    dispatch(resetFilters());
+    resetSelectsFilters();
+  };
+
+  const resetSelectsFilters = () => {
+    document.getElementById("selectPopulation").value = "defaultValue";
+    document.getElementById("selectContinent").value = "all";
+    // document.getElementById("selectActivity").value = "all";
+    document.getElementById("selectOrder").value = "defaultValue";
+  };
   //render
   return (
     <div className="{Styles.home}">
       <h1>Countries</h1>
 
+      <div className="resetfilters">
+        <button className="btnreset" onClick={onClick}>
+          Reset Filters
+        </button>
+      </div>
       <div>
         <select
           className={Styles.select}
+          id="selectContinent"
           onChange={(e) => handleFilterByContinent(e)}
         >
-          <option value="All">All</option>
+          <option value="all">All</option>
           <option value="Africa">Africa</option>
           <option value="Americas">America</option>
           <option value="Asia">Asia</option>
@@ -77,8 +102,12 @@ export default function Home() {
       </div>
       <Search />
       <div>
-        <select className={Styles.select} onChange={(e) => handleSort(e)}>
-          <option value="Orden">Orden Alfabetico</option>
+        <select
+          className={Styles.select}
+          id="selectOrder"
+          onChange={(e) => handleSortName(e)}
+        >
+          <option value="defaultValue">Orden Alfabetico</option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
         </select>
@@ -87,11 +116,12 @@ export default function Home() {
       <div>
         <select
           className={Styles.select}
+          id="selectPopulation"
           onChange={(e) => {
             handleSortPopulation(e);
           }}
         >
-          <option value="Poblacion">Poblacion</option>
+          <option value="defaultValue">Poblacion</option>
           <option value="ASC">Ascendente</option>
           <option value="DES">Descendente</option>
         </select>
@@ -119,26 +149,12 @@ export default function Home() {
         </Link>
       </div>
 
-      <div className={Styles.cards}>
-        {currentCountries?.map((country) => {
-          return (
-            <Link key={country.name} to={"/countries/" + country.id}>
-              <Card
-                name={country.name}
-                region={country.continent}
-                flags={country.flags}
-              />
-            </Link>
-          );
-        })}
-      </div>
-
       <Paged
         className={Styles.paged}
-        countriesPage={countriesPage}
         allCountries={allCountries.length}
         paged={paged}
       />
+      <Cards className="cardss" countries={currentCountries} />
     </div>
   );
 }
