@@ -12,12 +12,15 @@ import {
   orderByName,
   orderByPopulation,
   resetFilters,
+  filterActivity,
+  getActivity,
 } from "../../actions/index.js";
 import Styles from "./home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.countries);
+  const activity = useSelector((state) => state.activities);
   const [currentPage, setCurrentPage] = useState(1);
   const [orden, setOrden] = useState("");
   const [countriesPage] = useState(10);
@@ -34,6 +37,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getCountries());
+    dispatch(getActivity());
   }, [dispatch]);
 
   //get info of db
@@ -46,9 +50,10 @@ export default function Home() {
     dispatch(filterByContinent(e.target.value));
   }
 
-  // function handleFilterByActivities(e) {
-  //   dispatch(filterByContinent(e.target.value));
-  // }
+  const handleActivityFilter = (e) => {
+    dispatch(filterActivity(e.target.value));
+    setOrden(e.target.value);
+  };
 
   function handleSortName(e) {
     e.preventDefault();
@@ -73,7 +78,7 @@ export default function Home() {
   const resetSelectsFilters = () => {
     document.getElementById("selectPopulation").value = "defaultValue";
     document.getElementById("selectContinent").value = "all";
-    // document.getElementById("selectActivity").value = "all";
+    document.getElementById("selectActivity").value = "all";
     document.getElementById("selectOrder").value = "defaultValue";
   };
   //render
@@ -112,7 +117,27 @@ export default function Home() {
           <option value="Z-A">Z-A</option>
         </select>
       </div>
-
+      <div className="filteractivity">
+        <label className="labelac">Filter Activity</label>
+        <select
+          id="selectActivity"
+          name="filters"
+          onChange={(e) => handleActivityFilter(e)}
+        >
+          <option value="all">All</option>
+          {activity ? (
+            activity.map((a) => {
+              return (
+                <option key={a.id} value={a.name}>
+                  {a.name}
+                </option>
+              );
+            })
+          ) : (
+            <option disabled>No activities</option>
+          )}
+        </select>
+      </div>
       <div>
         <select
           className={Styles.select}
@@ -151,6 +176,7 @@ export default function Home() {
 
       <Paged
         className={Styles.paged}
+        countriesPage={countriesPage}
         allCountries={allCountries.length}
         paged={paged}
       />

@@ -53,6 +53,36 @@ export default function CountryDetail() {
               <span className="info2">Population: </span> {countrie?.population}
             </p>
           </div>
+          <div className="divAct">
+            <h2 className="activ">Acti✔ities:</h2>
+            {countrie.activities?.length > 0 ? (
+              countrie.activities?.map((a) => (
+                <div className="activity">
+                  <p key={a.id} className="elementsAct">
+                    <li className="liAct">
+                      {" "}
+                      <span className="spanAct">Name:</span> {a.name}
+                    </li>
+                    <li className="liAct">
+                      {" "}
+                      <span className="spanAct">Season:</span> {a.season}
+                    </li>
+                    <li className="liAct">
+                      {" "}
+                      <span className="spanAct">Duration:</span> {a.duration}
+                    </li>
+                    <li className="liAct">
+                      {" "}
+                      <span className="spanAct">Difficulty:</span>{" "}
+                      {a.difficulty}
+                    </li>
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p className="ntfA">not found activity</p>
+            )}
+          </div>
         </>
       ) : (
         <span>Country Not Found</span>

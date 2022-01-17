@@ -15,7 +15,7 @@ import {
 const initialState = {
   countries: [],
   allCountries: [],
-  allActivities: [],
+  activities: [],
   countriesDetails: {},
 };
 
@@ -40,15 +40,26 @@ function rootReducer(state = initialState, action) {
         countries: filterContinent,
       };
 
+    // case FILTER_ACTIVITIES:
+    //   const countryActivity = state.allActivities
+    //     .filter((act) => act.name === action.payload)[0]
+    //     .countries.map((countryAct) => countryAct);
+    //   return {
+    //     ...state,
+    //     countriesFiltered: countryActivity,
+    //   };
+
     case FILTER_ACTIVITIES:
-      const countryActivity = state.allActivities
-        .filter((act) => act.name === action.payload)[0]
-        .countries.map((countryAct) => countryAct);
+      const activitiesFilter = state.countries.filter(
+        (c) =>
+          c.activities &&
+          c.activities.map((a) => a.name).includes(action.payload)
+      );
       return {
         ...state,
-        countriesFiltered: countryActivity,
+        allCountries:
+          action.payload === "all" ? state.countries : activitiesFilter,
       };
-
     case ORDER_BY_NAME:
       let ordAlf =
         action.payload === "A-Z"
@@ -110,7 +121,7 @@ function rootReducer(state = initialState, action) {
     case GET_ACTIVITY: {
       return {
         ...state,
-        allActivities: action.payload,
+        activities: action.payload,
       };
     }
     case POST_ACTIVITY: {

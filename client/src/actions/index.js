@@ -97,10 +97,10 @@ export const resetFilters = () => {
 //get info activities
 export function getActivity() {
   return async function (dispatch) {
-    var infoActivities = await axios.get(`http://localhost:3001/activity`);
+    var activities = await axios.get(`http://localhost:3001/activity`);
     return dispatch({
       type: GET_ACTIVITY,
-      payload: infoActivities.data,
+      payload: activities.data,
     });
   };
 }
