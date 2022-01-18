@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
       });
       nameCountry.length
         ? res.status(200).json(nameCountry)
-        : res.status(404).send("Countrie not found");
+        : res.status(404).send("Country not found");
     } else {
       const countries = await Country.findAll({
         attributes: ["id", "flags", "name", "continent", "population"],
@@ -26,7 +26,8 @@ router.get("/", async (req, res) => {
       res.status(200).json(countries);
     }
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res.status(500).send(`Error trying to fetch countries from database`, err);
   }
 });
 
@@ -44,7 +45,10 @@ router.get("/:id", async (req, res) => {
       ? res.status(200).json(countryId)
       : res.status(404).send(`"Id not found in database`);
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    res
+      .status(500)
+      .send(`Error trying to fetch country:${id}, from database`, err);
   }
 });
 

@@ -111,9 +111,14 @@ export function getActivity() {
 }
 //filter activities
 export function filterActivity(payload) {
-  return {
-    type: FILTER_ACTIVITIES,
-    payload,
+  return async function (dispatch) {
+    const activities = await axios.get(
+      `http://localhost:3001/activity/?name=${payload}`
+    );
+    return dispatch({
+      type: FILTER_ACTIVITIES,
+      payload: activities.data,
+    });
   };
 }
 

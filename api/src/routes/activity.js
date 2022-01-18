@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const { Activity, Country } = require("../db.js");
+const { Activity, Country, Op } = require("../db.js");
 
 const router = Router();
 
@@ -26,11 +26,34 @@ router.post("/", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    let activities = await Activity.findAll();
+    const { name } = req.query;
+    let activities = [];
+    if (name) {
+      activities = await Activity.findAll({
+        where: {
+          name: {
+            [Op.iLike]: `%${name}%`,
+          },
+        },
+        include: [
+          {
+            model: Country,
+          },
+        ],
+      });
+    } else {
+      activities = await Activity.findAll({
+        include: [
+          {
+            model: Country,
+          },
+        ],
+      });
+    }
     res.json(activities);
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    console.error(`Error trying to fetch activities`, err);
   }
 });
-
 module.exports = router;

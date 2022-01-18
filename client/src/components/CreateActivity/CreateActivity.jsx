@@ -58,7 +58,8 @@ const CreateActivity = () => {
     });
   };
 
-  const handleDelete = (e) => {
+  const handleDelete = (event, e) => {
+    event.preventDefault();
     setInput({
       ...input,
       countries: input.countries.filter((c) => c !== e),
@@ -97,13 +98,20 @@ const CreateActivity = () => {
       })
     );
   };
-
+  const validateDuration = (e) => {
+    let val = parseInt(e.target.value, 10);
+    if (isNaN(val)) {
+      return false;
+    } else {
+      return true;
+    }
+  };
   return (
     <div className="divcreate">
       <Link to="/countries">
         <button className="back">Back</button>
       </Link>
-      <h2 className="title">Add a new tourist activity 🏄</h2>
+      <h2 className="title">Add a new tourist activity </h2>
       <form className="formCreate" onSubmit={handleSubmit}>
         <label className="lab">
           Name
@@ -151,9 +159,13 @@ const CreateActivity = () => {
           <input
             className="inputDur"
             type="number"
-            onChange={handleChange}
+            onChange={(e) => {
+              validateDuration(e) && handleChange(e);
+            }}
             required="required"
             name="duration"
+            min="0"
+            step={1}
             value={input.duration}
           />
           {error.duration && <p className="error">{error.duration}</p>}
@@ -202,12 +214,16 @@ const CreateActivity = () => {
         </label>
 
         <div className="addCountries">
-          {input.countries.map((el) => (
-            <div className="a">
+          {input.countries.map((el, idx) => (
+            <div className="a" key={idx}>
               <p className="countriesAdd">
                 {el}
-                <button className="btnDel" onClick={() => handleDelete(el)}>
-                  x
+                <button
+                  className="btnDel"
+                  onClick={(event) => handleDelete(event, el)}
+                >
+                  {" "}
+                  X{" "}
                 </button>
               </p>
             </div>

@@ -54,7 +54,7 @@ export default function CountryDetail() {
             </p>
           </div>
           <div className="divAct">
-            <h2 className="activ">Acti✔ities:</h2>
+            <h2 className="activ">Activities:</h2>
             {countrie.activities?.length > 0 ? (
               countrie.activities?.map((a) => (
                 <div className="activity">

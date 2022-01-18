@@ -3,18 +3,15 @@
   padding-right: 100px;
   padding-left: 100px;
   padding-bottom: 90px;
-  /* background-color: rgba(0, 0, 0, 0.911);
-  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.616); */
 }
 
 .h1title {
-  -webkit-text-stroke: 0.7px rgb(32, 149, 170);
-  color: rgba(243, 229, 229, 0.877);
+  color: rgba(10, 10, 10, 0.877);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 518px;
+  height: 100px;
 }
 
 .btnlanding {
@@ -22,7 +19,8 @@
   --time: 0.7s;
 
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   height: 1em;
   padding-bottom: 30px;
   padding-right: 70px;

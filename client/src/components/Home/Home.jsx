@@ -23,6 +23,7 @@ export default function Home() {
   const activity = useSelector((state) => state.activities);
   const [currentPage, setCurrentPage] = useState(1);
   const [, setOrden] = useState("");
+  //const [, setActivitySelected] = useState("");
   const [countriesPage] = useState(10);
   const indexOfLastCountries = currentPage * countriesPage;
   const indexOfFirstCountries = indexOfLastCountries - countriesPage;
@@ -51,22 +52,34 @@ export default function Home() {
   }
 
   const handleActivityFilter = (e) => {
-    dispatch(filterActivity(e.target.value));
-    setOrden(e.target.value);
+    if (e.target.value === "all") {
+      dispatch(getCountries());
+    } else {
+      dispatch(filterActivity(e.target.value));
+      setOrden(e.target.value);
+    }
   };
 
   function handleSortName(e) {
     e.preventDefault();
-    dispatch(orderByName(e.target.value));
-    setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    if (e.target.value === "defaultValue") {
+      dispatch(getCountries());
+    } else {
+      dispatch(orderByName(e.target.value));
+      setCurrentPage(1);
+      setOrden(`Ordenado ${e.target.value}`);
+    }
   }
 
   function handleSortPopulation(e) {
     e.preventDefault();
-    dispatch(orderByPopulation(e.target.value));
-    setCurrentPage(1);
-    setOrden(`Ordenado ${e.target.value}`);
+    if (e.target.value === "defaultValue") {
+      dispatch(getCountries());
+    } else {
+      dispatch(orderByPopulation(e.target.value));
+      setCurrentPage(1);
+      setOrden(`Ordenado ${e.target.value}`);
+    }
   }
   const onClick = (e) => {
     e.preventDefault();

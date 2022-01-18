@@ -1,41 +1,110 @@
-.home {
-  background-position-y: center center;
-  background-size: cover;
-  height: 97vh;
-  color: rgba(49, 48, 48, 0.603);
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  order: 6;
+.divNav {
+  background: url("../../img/wp2972400.jpg");
+  background-color: rgba(0, 0, 0, 0.829);
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  margin: 0;
 }
 
-.cards {
-  /* box-shadow: 15px;
-  background-color: rgba(96, 190, 190, 0.164);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem;
-  border: 4px solid rgba(112, 112, 187, 0.281);
-  gap: 10px; */
+.icon {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  float: left;
 }
 
-.paged {
-  position: relative;
-  justify-content: center;
+.addactivity {
+  float: right;
+  margin: 3px;
+  padding: 8px;
+  background-color: rgba(56, 56, 56, 0.418);
+  color: rgb(236, 236, 236);
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.search {
+  margin-top: 80px;
+  padding: 3px;
+  background-color: rgba(68, 68, 68, 0.37);
+  border-radius: 4px;
+}
+
+.inputsearch {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  outline: none;
+  caret-color: rgb(25, 97, 156);
+}
+
+::placeholder {
+  color: rgb(148, 148, 148);
+}
+
+input:focus {
+  color: rgb(148, 148, 148);
+}
+
+.btnsearch {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.74);
+}
+
+.filtercontinent {
+  color: rgb(252, 252, 252);
+  margin-top: 80px;
+  margin-left: 50px;
+}
+
+.labelco {
+  display: block;
   margin-bottom: 10px;
-  height: 3em;
 }
 
-.recarga {
+.filteractivity {
+  color: rgb(252, 252, 252);
+  margin-top: 30px;
+}
+
+.labelac {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.filterorderaz {
+  color: rgb(252, 252, 252);
+  margin-top: 30px;
+}
+
+.labelor {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.filterpopulation {
+  color: rgb(252, 252, 252);
+  margin-top: 30px;
+}
+
+.labelpo {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.resetfilters {
+  margin-top: 90px;
   display: flex;
-  align-items: center;
   justify-content: center;
 }
-.refresh {
-  background-color: transparent;
+
+.btnreset {
+  background-color: rgba(0, 0, 0, 0);
+  border-color: rgba(157, 185, 218, 0.644);
   color: white;
-  border: none;
-  font-size: 25px;
+  padding: 7px;
 }

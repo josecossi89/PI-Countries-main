@@ -72,26 +72,29 @@ function rootReducer(state = initialState, action) {
 
     //order by population
     case SORT_BY_POPULATION:
-      let ordPob =
-        action.payload === "ASC"
-          ? state.countries.sort((a, b) => {
-              if (a.population > b.population) {
-                return 1;
-              }
-              if (b.population > a.population) {
-                return -1;
-              }
-              return 0;
-            })
-          : state.countries.sort((a, b) => {
-              if (a.population > b.population) {
-                return -1;
-              }
-              if (b.population > a.population) {
-                return 1;
-              }
-              return 0;
-            });
+      let ordPob = state.countries;
+      if (action.payload === "ASC" || action.payload === "DES") {
+        ordPob =
+          action.payload === "ASC"
+            ? state.countries.sort((a, b) => {
+                if (a.population > b.population) {
+                  return 1;
+                }
+                if (b.population > a.population) {
+                  return -1;
+                }
+                return 0;
+              })
+            : state.countries.sort((a, b) => {
+                if (a.population > b.population) {
+                  return -1;
+                }
+                if (b.population > a.population) {
+                  return 1;
+                }
+                return 0;
+              });
+      }
       return {
         ...state,
         allCountries: ordPob,
@@ -136,15 +139,17 @@ function rootReducer(state = initialState, action) {
 
     //filter activities
     case FILTER_ACTIVITIES:
-      const activitiesFilter = state.countries.filter(
-        (c) =>
-          c.activities &&
-          c.activities.map((a) => a.name).includes(action.payload)
-      );
+      // const activitiesFilter = state.countries.filter(
+      //   (c) =>
+      //     c.activities &&
+      //     c.activities.map((a) => a.name).includes(action.payload)
+      // );
       return {
         ...state,
-        allCountries:
-          action.payload === "all" ? state.countries : activitiesFilter,
+        countries:
+          action.payload === "all"
+            ? state.allCountries
+            : action.payload[0].countries,
       };
 
     //reset filters and orders
