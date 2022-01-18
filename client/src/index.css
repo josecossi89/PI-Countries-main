@@ -1,15 +1,11 @@
 body {
-  /* background: url("../src/img/wp2972323.jpg"); */
-  /* background-size: cover;
-  background-attachment: fixed;
+  width: 100%;
+  max-width: 1400px;
+  display: block;
   margin: auto;
-  display: inline-block;
-  flex-direction: wrap;
-  flex-wrap: wrap;
-  margin: 0;
-  font-family: "Lato", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
+  min-height: 100vh;
+
+  font-family: sans-serif;
 }
 
 code {
