@@ -21,12 +21,15 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
+    //get info in db
     case GET_COUNTRIES:
       return {
         ...state,
         countries: action.payload,
         allCountries: action.payload,
       };
+
+    //filter by continent
     case FILTER_BY_CONTINENT:
       const allCountries = state.allCountries;
       const filterContinent =
@@ -40,26 +43,7 @@ function rootReducer(state = initialState, action) {
         countries: filterContinent,
       };
 
-    // case FILTER_ACTIVITIES:
-    //   const countryActivity = state.allActivities
-    //     .filter((act) => act.name === action.payload)[0]
-    //     .countries.map((countryAct) => countryAct);
-    //   return {
-    //     ...state,
-    //     countriesFiltered: countryActivity,
-    //   };
-
-    case FILTER_ACTIVITIES:
-      const activitiesFilter = state.countries.filter(
-        (c) =>
-          c.activities &&
-          c.activities.map((a) => a.name).includes(action.payload)
-      );
-      return {
-        ...state,
-        allCountries:
-          action.payload === "all" ? state.countries : activitiesFilter,
-      };
+    //order by name (A-Z && Z-A)
     case ORDER_BY_NAME:
       let ordAlf =
         action.payload === "A-Z"
@@ -86,6 +70,7 @@ function rootReducer(state = initialState, action) {
         countries: ordAlf,
       };
 
+    //order by population
     case SORT_BY_POPULATION:
       let ordPob =
         action.payload === "ASC"
@@ -112,37 +97,61 @@ function rootReducer(state = initialState, action) {
         allCountries: ordPob,
       };
 
+    //get countrie by name
     case GET_COUNTRIES_BY_NAME: {
       return {
         ...state,
         countries: action.payload,
       };
     }
+
+    //get info by countrie (details) match id
+    case GET_COUNTRY_DETAIL:
+      return {
+        ...state,
+        countryDetail: action.payload,
+      };
+
+    //clear countrie details
+    case CLEAR_COUNTRY_DETAILS:
+      return {
+        ...state,
+        countryDetail: {},
+      };
+
+    //post info activities (create)
+    case POST_ACTIVITY: {
+      return {
+        ...state,
+      };
+    }
+
+    //get info activities
     case GET_ACTIVITY: {
       return {
         ...state,
         activities: action.payload,
       };
     }
-    case POST_ACTIVITY: {
+
+    //filter activities
+    case FILTER_ACTIVITIES:
+      const activitiesFilter = state.countries.filter(
+        (c) =>
+          c.activities &&
+          c.activities.map((a) => a.name).includes(action.payload)
+      );
       return {
         ...state,
+        allCountries:
+          action.payload === "all" ? state.countries : activitiesFilter,
       };
-    }
+
+    //reset filters and orders
     case RESET_FILTERS:
       return {
         ...state,
         countries: state.countries,
-      };
-    case GET_COUNTRY_DETAIL:
-      return {
-        ...state,
-        countryDetail: action.payload,
-      };
-    case CLEAR_COUNTRY_DETAILS:
-      return {
-        ...state,
-        countryDetail: {},
       };
 
     default:

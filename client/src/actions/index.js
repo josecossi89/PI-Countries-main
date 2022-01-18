@@ -27,7 +27,31 @@ export function getCountries() {
   };
 }
 
-//get info for name
+//filter by continent
+export function filterByContinent(payload) {
+  return {
+    type: FILTER_BY_CONTINENT,
+    payload,
+  };
+}
+
+//order by name (A-Z && Z-A)
+export function orderByName(payload) {
+  return {
+    type: ORDER_BY_NAME,
+    payload,
+  };
+}
+
+//order by population
+export function orderByPopulation(payload) {
+  return {
+    type: SORT_BY_POPULATION,
+    payload,
+  };
+}
+
+//get countrie by name
 export function getCountryByName(name) {
   return async function (dispatch) {
     try {
@@ -44,7 +68,7 @@ export function getCountryByName(name) {
   };
 }
 
-//get info for id
+//get info by countrie (details) match id
 export function getCountryDetails(id) {
   return async (dispatch) => {
     try {
@@ -59,41 +83,22 @@ export function getCountryDetails(id) {
   };
 }
 
+//clear countrie details
 export function clearCountryDetail() {
   return { type: CLEAR_COUNTRY_DETAILS };
 }
 
-export function filterByContinent(payload) {
-  return {
-    type: FILTER_BY_CONTINENT,
-    payload,
+//post info activities (create)
+export function postActivity(payload) {
+  return async function (dispatch) {
+    const activities = await axios.post(
+      `http://localhost:3001/activity`,
+      payload
+    );
+    return activities;
   };
 }
 
-export function filterActivity(payload) {
-  return {
-    type: FILTER_ACTIVITIES,
-    payload,
-  };
-}
-
-export function orderByName(payload) {
-  return {
-    type: ORDER_BY_NAME,
-    payload,
-  };
-}
-
-export function orderByPopulation(payload) {
-  return {
-    type: SORT_BY_POPULATION,
-    payload,
-  };
-}
-
-export const resetFilters = () => {
-  return { type: RESET_FILTERS };
-};
 //get info activities
 export function getActivity() {
   return async function (dispatch) {
@@ -104,14 +109,15 @@ export function getActivity() {
     });
   };
 }
-
-//post info activities
-export function postActivity(payload) {
-  return async function (dispatch) {
-    const activities = await axios.post(
-      `http://localhost:3001/activity`,
-      payload
-    );
-    return activities;
+//filter activities
+export function filterActivity(payload) {
+  return {
+    type: FILTER_ACTIVITIES,
+    payload,
   };
 }
+
+//reset filters and orders
+export const resetFilters = () => {
+  return { type: RESET_FILTERS };
+};

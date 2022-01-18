@@ -22,7 +22,7 @@ export default function Home() {
   const allCountries = useSelector((state) => state.countries);
   const activity = useSelector((state) => state.activities);
   const [currentPage, setCurrentPage] = useState(1);
-  const [orden, setOrden] = useState("");
+  const [, setOrden] = useState("");
   const [countriesPage] = useState(10);
   const indexOfLastCountries = currentPage * countriesPage;
   const indexOfFirstCountries = indexOfLastCountries - countriesPage;
