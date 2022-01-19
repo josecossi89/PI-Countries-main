@@ -20,7 +20,7 @@ router.get("/", async (req, res) => {
         : res.status(404).send("Country not found");
     } else {
       const countries = await Country.findAll({
-        attributes: ["id", "flags", "name", "continent", "population"],
+        attributes: ["id", "flags", "name", "continent"],
       });
 
       res.status(200).json(countries);
