@@ -26,7 +26,7 @@ export default function Search() {
           className={Styles.input}
           type="text"
           value={name}
-          placeholder="Search Countries..."
+          placeholder="Name Countrie..."
           onChange={(e) => handleInputChange(e)}
         />
         <button
@@ -34,7 +34,7 @@ export default function Search() {
           type="submit"
           onClick={(e) => handleSubmit(e)}
         >
-          Buscar
+          Search Countrie
         </button>
       </form>
     </div>

@@ -1,23 +1,51 @@
-.divCard {
-  display: inline-table;
-  background-color: rgba(0, 0, 0, 0.808);
-  border-radius: 3px;
-  font-size: 10px;
-  line-height: 2px;
-  margin: 10px;
-  box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.705);
-}
-
-.name {
-  color: silver;
+.abox {
+  display: inline-block;
+  width: 240px;
   text-align: center;
+  margin: 10px;
 }
 
-.flag {
-  width: 300px;
-  height: 160px;
-  display: block;
-  margin: auto;
+.imgcontainer {
+  height: 230px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 0px 0px 20px 20px;
+  display: inline-block;
+}
+
+.imgcontainer img {
+  transform: skew(0deg, 0deg);
+  height: 250px;
+  margin: -35px 0px 0px -70px;
+}
+
+.innerskew {
+  display: inline-block;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 0px;
+  transform: skew(0deg, 0deg);
+  font-size: 0px;
+  margin: 30px 0px 0px 0px;
+  background: #c8c2c2;
+  height: 250px;
+  width: 200px;
+}
+
+.textcontainer {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  padding: 120px 20px 20px 20px;
+  border-radius: 20px;
+  background: rgb(231, 220, 220);
+  margin: -120px 0px 0px 0px;
+  line-height: 19px;
+  font-size: 14px;
+}
+
+.textcontainer h3 {
+  margin: 20px 0px 10px 0px;
+  color: #000000;
+  font-size: 18px;
 }
 
 .continent {

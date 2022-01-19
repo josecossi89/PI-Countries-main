@@ -4,8 +4,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { getCountryDetails, clearCountryDetail } from "../../actions/index.js";
 import { useEffect } from "react";
-// import Loading from "./Loading/Loading";
-import "./countriesdetails.module.css";
+import Styles from "./countriesdetails.module.css";
 
 export default function CountryDetail() {
   const { id } = useParams();
@@ -25,62 +24,72 @@ export default function CountryDetail() {
     <div>
       {countrie ? (
         <>
-          <div className="divDetail">
+          <div className={Styles.containerDetails}>
             <Link to="/countries">
-              <button className="backdet">Back</button>
+              <button className={Styles.btnback}>Back</button>
             </Link>
-            <img className="img" src={countrie?.flags} alt={countrie?.name} />
-            <h1 className="name">{countrie?.name}</h1>
-            <span className="id">{countrie?.id}</span>
-            <p className="info">
+            <img
+              className={Styles.img}
+              src={countrie?.flags}
+              alt={countrie?.name}
+            />
+            <h1 className={Styles.name}>{countrie?.name}</h1>
+            <span className={Styles.id}>{countrie?.id}</span>
+            <p className={Styles.infodetail}>
               {" "}
-              <span className="info2">Continent: </span> {countrie?.continent}
+              <span className={Styles.titlesinfo}>Continent: </span>{" "}
+              {countrie?.continent}
             </p>
-            <p className="info">
+            <p className={Styles.infodetail}>
               {" "}
-              <span className="info2">Capital: </span> {countrie?.capital}
+              <span className={Styles.titlesinfo}>Capital: </span>{" "}
+              {countrie?.capital}
             </p>
-            <p className="info">
+            <p className={Styles.infodetail}>
               {" "}
-              <span className="info2">Sub Region: </span> {countrie?.subregion}
+              <span className={Styles.titlesinfo}>Sub Region: </span>{" "}
+              {countrie?.subregion}
             </p>
-            <p className="info">
+            <p className={Styles.infodetail}>
               {" "}
-              <span className="info2">Area: </span> {countrie?.area} km²
+              <span className={Styles.titlesinfo}>Area: </span> {countrie?.area}{" "}
+              km²
             </p>
-            <p className="info">
+            <p className={Styles.infodetail}>
               {" "}
-              <span className="info2">Population: </span> {countrie?.population}
+              <span className={Styles.titlesinfo}>Population: </span>{" "}
+              {countrie?.population}
             </p>
           </div>
-          <div className="divAct">
-            <h2 className="activ">Activities:</h2>
+          <div className={Styles.divAct}>
+            <h2 className={Styles.activ}>Activities:</h2>
             {countrie.activities?.length > 0 ? (
               countrie.activities?.map((a) => (
-                <div className="activity">
-                  <p key={a.id} className="elementsAct">
-                    <li className="liAct">
+                <div className={Styles.activity}>
+                  <p key={a.id} className={Styles.elementsAct}>
+                    <li className={Styles.liAct}>
                       {" "}
-                      <span className="spanAct">Name:</span> {a.name}
+                      <span className={Styles.spanAct}>Name:</span> {a.name}
                     </li>
-                    <li className="liAct">
+                    <li className={Styles.liAct}>
                       {" "}
-                      <span className="spanAct">Season:</span> {a.season}
+                      <span className={Styles.spanAct}>Season:</span> {a.season}
                     </li>
-                    <li className="liAct">
+                    <li className={Styles.liAct}>
                       {" "}
-                      <span className="spanAct">Duration:</span> {a.duration}
+                      <span className={Styles.spanAct}>Duration:</span>{" "}
+                      {a.duration}
                     </li>
-                    <li className="liAct">
+                    <li className={Styles.liAct}>
                       {" "}
-                      <span className="spanAct">Difficulty:</span>{" "}
+                      <span className={Styles.spanAct}>Difficulty:</span>{" "}
                       {a.difficulty}
                     </li>
                   </p>
                 </div>
               ))
             ) : (
-              <p className="ntfA">not found activity</p>
+              <p className={Styles.ntfA}>not found activity</p>
             )}
           </div>
         </>

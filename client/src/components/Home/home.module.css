@@ -1,110 +1,23 @@
 .divNav {
-  background: url("../../img/wp2972400.jpg");
-  background-color: rgba(0, 0, 0, 0.829);
-  position: fixed;
-  height: 100%;
-  left: 0;
-  top: 0;
-  padding: 10px;
-  margin: 0;
+  padding-bottom: 20px;
+  background-color: rgb(82, 152, 199);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin-bottom: 15px;
 }
 
-.icon {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  float: left;
-}
-
-.addactivity {
-  float: right;
-  margin: 3px;
-  padding: 8px;
-  background-color: rgba(56, 56, 56, 0.418);
-  color: rgb(236, 236, 236);
-  border-radius: 3px;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 13px;
-}
-
-.search {
-  margin-top: 80px;
-  padding: 3px;
-  background-color: rgba(68, 68, 68, 0.37);
-  border-radius: 4px;
-}
-
-.inputsearch {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  outline: none;
-  caret-color: rgb(25, 97, 156);
-}
-
-::placeholder {
-  color: rgb(148, 148, 148);
-}
-
-input:focus {
-  color: rgb(148, 148, 148);
-}
-
-.btnsearch {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(0, 0, 0, 0);
-  color: rgba(255, 255, 255, 0.74);
-}
-
-.filtercontinent {
-  color: rgb(252, 252, 252);
-  margin-top: 80px;
-  margin-left: 50px;
-}
-
-.labelco {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.filteractivity {
-  color: rgb(252, 252, 252);
-  margin-top: 30px;
-}
-
-.labelac {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.filterorderaz {
-  color: rgb(252, 252, 252);
-  margin-top: 30px;
-}
-
-.labelor {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.filterpopulation {
-  color: rgb(252, 252, 252);
-  margin-top: 30px;
-}
-
-.labelpo {
-  display: block;
-  margin-bottom: 10px;
-}
-
-.resetfilters {
-  margin-top: 90px;
+.select {
   display: flex;
   justify-content: center;
-}
-
-.btnreset {
-  background-color: rgba(0, 0, 0, 0);
-  border-color: rgba(157, 185, 218, 0.644);
-  color: white;
-  padding: 7px;
+  align-items: center;
+  text-align: center;
+  width: 150px;
+  background-color: transparent;
+  color: rgb(24, 23, 23);
+  border-radius: 5px;
+  border: 2.5px solid white;
 }

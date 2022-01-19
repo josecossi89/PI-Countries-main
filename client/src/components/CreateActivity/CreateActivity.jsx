@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { postActivity } from "../../actions/index.js";
-import "./createactivity.module.css";
+import Styles from "./createactivity.module.css";
 
 function formValidate(a) {
   let error = {};
@@ -18,7 +18,7 @@ function formValidate(a) {
   return error;
 }
 
-const CreateActivity = () => {
+export default function CreateActivity() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const allCountries = useSelector((s) => s.countries);
@@ -107,13 +107,13 @@ const CreateActivity = () => {
     }
   };
   return (
-    <div className="divcreate">
+    <div className={Styles.divcreate}>
       <Link to="/countries">
-        <button className="back">Back</button>
+        <button className={Styles.back}>Back</button>
       </Link>
-      <h2 className="title">Add a new tourist activity </h2>
-      <form className="formCreate" onSubmit={handleSubmit}>
-        <label className="lab">
+      <h2 className={Styles.title}>Add a new tourist activity </h2>
+      <form className={Styles.formCreate} onSubmit={handleSubmit}>
+        <label className={Styles.lab}>
           Name
           <input
             required="required"
@@ -127,11 +127,11 @@ const CreateActivity = () => {
         </label>
         <br />
         <br />
-        <label className="lab">
+        <label className={Styles.lab}>
           Difficulty
           <select
             required="required"
-            className="selectDif"
+            className={Styles.selectDif}
             name="difficulty"
             onChange={(e) => handleChange(e)}
           >
@@ -150,14 +150,16 @@ const CreateActivity = () => {
             <option value="4">4</option>
             <option value="5">5</option>
           </select>
-          {error.difficulty && <p className="error">{error.difficulty}</p>}
+          {error.difficulty && (
+            <p className={Styles.error}>{error.difficulty}</p>
+          )}
         </label>
         <br />
         <br />
-        <label className="lab">
+        <label className={Styles.lab}>
           Duration (min)
           <input
-            className="inputDur"
+            className={Styles.inputDur}
             type="number"
             onChange={(e) => {
               validateDuration(e) && handleChange(e);
@@ -168,15 +170,16 @@ const CreateActivity = () => {
             step={1}
             value={input.duration}
           />
-          {error.duration && <p className="error">{error.duration}</p>}
+          {error.duration && <p className={Styles.error}>{error.duration}</p>}
         </label>
         <br />
         <br />
-        <label className="lab">
+        <label className={Styles.lab}>
+          {" "}
           Season
           <select
             required="required"
-            className="selectSea"
+            className={Styles.selectSea}
             name="season"
             onChange={handleChange}
           >
@@ -194,14 +197,14 @@ const CreateActivity = () => {
             <option value="Winter">Winter</option>
             <option value="Spring">Spring</option>
           </select>
-          {error.season && <p className="error">{error.season}</p>}
+          {error.season && <p className={Styles.error}>{error.season}</p>}
         </label>
         <br />
         <br />
-        <label className="lab">
+        <label className={Styles.lab}>
           Countrie/s
           <select
-            className="selectCount"
+            className={Styles.selectCount}
             required="required"
             name="country"
             onChange={(e) => handleSelect(e)}
@@ -210,19 +213,20 @@ const CreateActivity = () => {
               return <option value={c.id}>{c.name}</option>;
             })}
           </select>
-          {error.countries && <span className="error">{error.countries}</span>}
+          {error.countries && (
+            <span className={Styles.error}>{error.countries}</span>
+          )}
         </label>
 
-        <div className="addCountries">
+        <div className={Styles.addCountries}>
           {input.countries.map((el, idx) => (
-            <div className="a" key={idx}>
-              <p className="countriesAdd">
+            <div className={Styles.a} key={idx}>
+              <p className={Styles.countriesAdd}>
                 {el}
                 <button
-                  className="btnDel"
+                  className={Styles.btnDel}
                   onClick={(event) => handleDelete(event, el)}
                 >
-                  {" "}
                   X{" "}
                 </button>
               </p>
@@ -233,7 +237,7 @@ const CreateActivity = () => {
         <br />
 
         <button
-          className="btnSubmit"
+          className={Styles.btnSubmit}
           disabled={button}
           type="submit"
           onClick={handleSubmit}
@@ -243,6 +247,4 @@ const CreateActivity = () => {
       </form>
     </div>
   );
-};
-
-export default CreateActivity;
+}

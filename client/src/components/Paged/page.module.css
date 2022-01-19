@@ -1,10 +1,40 @@
-.paged {
+/* .paged {
+  margin-right: 110px;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 }
 
 .number {
-  border: thick solid rgba(238, 229, 229, 0.623);
-  border-radius: 999px;
-  background-color: rgba(108, 109, 109, 0);
+  background-color: rgba(0, 0, 0, 0.76);
+  padding: 3px;
+  margin: 1px;
+  border-radius: 10px;
+  color: rgb(187, 187, 187);
+  font-weight: bold;
+}
+
+.navpag {
+  margin: 30px;
+} */
+
+.paged {
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.number {
+  background-color: transparent;
+  border: solid 1px rgba(27, 22, 22, 0.527);
+  border-radius: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.button {
+  background-color: rgba(0, 0, 0, 0.507);
+  color: rgba(67, 124, 190, 0.863);
+  font-size: 16px;
+  font-weight: bold;
 }
