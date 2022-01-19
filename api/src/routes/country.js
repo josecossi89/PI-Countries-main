@@ -11,16 +11,18 @@ router.get("/", async (req, res) => {
       const nameCountry = await Country.findAll({
         where: {
           name: {
+            //match name
             [Op.iLike]: `%${name}%`,
           },
         },
       });
+      //condition ternary
       nameCountry.length
         ? res.status(200).json(nameCountry)
         : res.status(404).send("Country not found");
     } else {
       const countries = await Country.findAll({
-        attributes: ["id", "flags", "name", "continent"],
+        attributes: ["id", "flags", "name", "continent", "population"],
       });
 
       res.status(200).json(countries);

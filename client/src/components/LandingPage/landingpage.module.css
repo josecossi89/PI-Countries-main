@@ -63,7 +63,7 @@
   transition: width var(--time), padding-top var(--time);
 }
 
-.btnlanding:hover span {
+/* .btnlanding:hover span {
   width: calc(var(--width) * 2.25);
   padding-top: calc(var(--width) * 2.25);
-}
+} */

@@ -71,6 +71,7 @@ function rootReducer(state = initialState, action) {
       };
 
     //order by population
+
     case SORT_BY_POPULATION:
       let ordPob = state.countries;
       if (action.payload === "ASC" || action.payload === "DES") {
@@ -139,11 +140,6 @@ function rootReducer(state = initialState, action) {
 
     //filter activities
     case FILTER_ACTIVITIES:
-      // const activitiesFilter = state.countries.filter(
-      //   (c) =>
-      //     c.activities &&
-      //     c.activities.map((a) => a.name).includes(action.payload)
-      // );
       return {
         ...state,
         countries:

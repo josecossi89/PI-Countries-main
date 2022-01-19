@@ -71,6 +71,7 @@ export default function Home() {
 
   function handleSortPopulation(e) {
     e.preventDefault();
+    console.log(e.target.value);
     if (e.target.value === "defaultValue") {
       dispatch(getCountries());
     } else {
@@ -164,6 +165,7 @@ export default function Home() {
             )}
           </select>
         </div>
+
         {/* SortByPopulation */}
         <div>
           <select
@@ -186,7 +188,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="divHome">
+      <div className={Styles.divHome}>
         <Paged
           className={Styles.paged}
           countriesPage={countriesPage}
