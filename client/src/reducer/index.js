@@ -144,7 +144,7 @@ function rootReducer(state = initialState, action) {
         ...state,
         countries:
           action.payload === "all"
-            ? state.allCountries
+            ? state.countries
             : action.payload[0].countries,
       };
 
