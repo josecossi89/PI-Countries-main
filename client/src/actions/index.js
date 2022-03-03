@@ -16,7 +16,9 @@ import axios from "axios";
 export function getCountries() {
   return async function (dispatch) {
     try {
-      var countries = await axios.get("http://localhost:3001/countries");
+      var countries = await axios.get(
+        "https://countrieapp.herokuapp.com/countries"
+      );
       return dispatch({
         type: GET_COUNTRIES,
         payload: countries.data,
@@ -56,7 +58,7 @@ export function getCountryByName(name) {
   return async function (dispatch) {
     try {
       let countries = await axios.get(
-        `http://localhost:3001/countries?name=${name}`
+        `https://countrieapp.herokuapp.com/countries?name=${name}`
       );
       return dispatch({
         type: GET_COUNTRIES_BY_NAME,
@@ -82,7 +84,9 @@ export function getClima() {
 export function getCountryDetails(id) {
   return async (dispatch) => {
     try {
-      const details = await axios.get("http://localhost:3001/countries/" + id);
+      const details = await axios.get(
+        "https://countrieapp.herokuapp.com/countries/" + id
+      );
       return dispatch({
         type: GET_COUNTRY_DETAIL,
         payload: details.data,
@@ -101,7 +105,7 @@ export function clearCountryDetail() {
 //post info activities (create)
 export async function postActivity(payload) {
   const activities = await axios.post(
-    `http://localhost:3001/activity`,
+    `https://countrieapp.herokuapp.com/activity`,
     payload
   );
   return activities;
@@ -110,7 +114,9 @@ export async function postActivity(payload) {
 //get info activities
 export function getActivity() {
   return async function (dispatch) {
-    var activities = await axios.get(`http://localhost:3001/activity`);
+    var activities = await axios.get(
+      `https://countrieapp.herokuapp.com/activity`
+    );
     return dispatch({
       type: GET_ACTIVITY,
       payload: activities.data,
@@ -121,7 +127,7 @@ export function getActivity() {
 export function filterActivity(payload) {
   return async function (dispatch) {
     const activities = await axios.get(
-      `http://localhost:3001/activity/?name=${payload}`
+      `https://countrieapp.herokuapp.com/activity/?name=${payload}`
     );
     return dispatch({
       type: FILTER_ACTIVITIES,
