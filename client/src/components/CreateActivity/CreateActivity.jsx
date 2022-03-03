@@ -66,24 +66,30 @@ export default function CreateActivity() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(postActivity(input));
-    setInput({
-      name: "",
-      difficulty: "",
-      duration: "",
-      season: "",
-      countries: [],
-    });
-    alert("Activity Created Succesfuly");
-    navigate("/countries");
-    setError(
-      formValidate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+    try {
+      const resp = await postActivity(input);
+      console.log(resp);
+
+      setInput({
+        name: "",
+        difficulty: "",
+        duration: "",
+        season: "",
+        countries: [],
+      });
+      alert("Activity Created Succesfuly");
+      navigate("/countries");
+    } catch (err) {
+      alert(`Error trying to create activity, activity already exists`);
+      setError(
+        formValidate({
+          ...input,
+          [e.target.name]: e.target.value,
+        })
+      );
+    }
   };
 
   const handleChange = (e) => {

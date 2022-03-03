@@ -5,16 +5,25 @@ const router = Router();
 
 router.post("/", async (req, res) => {
   const { name, difficulty, duration, season, countries } = req.body;
-
+  let activity = null;
   try {
-    const [activity] = await Activity.findOrCreate({
+    const exists = await Activity.findAll({
       where: {
         name,
-        difficulty,
-        duration,
-        season,
       },
     });
+    if (exists.length > 0) {
+      [activity] = exists;
+    } else {
+      [activity] = await Activity.findOrCreate({
+        where: {
+          name,
+          difficulty,
+          duration,
+          season,
+        },
+      });
+    }
 
     await activity.addCountries(countries);
 

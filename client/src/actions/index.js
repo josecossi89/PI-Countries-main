@@ -67,6 +67,16 @@ export function getCountryByName(name) {
     }
   };
 }
+export function getClima() {
+  return async function (dispatch) {
+    try {
+      let countries = await axios.get(`https://restcountries.com/v3/all`);
+      console.log(countries);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
 
 //get info by countrie (details) match id
 export function getCountryDetails(id) {
@@ -89,14 +99,12 @@ export function clearCountryDetail() {
 }
 
 //post info activities (create)
-export function postActivity(payload) {
-  return async function (dispatch) {
-    const activities = await axios.post(
-      `http://localhost:3001/activity`,
-      payload
-    );
-    return activities;
-  };
+export async function postActivity(payload) {
+  const activities = await axios.post(
+    `http://localhost:3001/activity`,
+    payload
+  );
+  return activities;
 }
 
 //get info activities

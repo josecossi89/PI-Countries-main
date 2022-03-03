@@ -13,6 +13,7 @@ import {
   resetFilters,
   filterActivity,
   getActivity,
+  getClima,
 } from "../../actions/index.js";
 import Styles from "./home.module.css";
 
@@ -37,6 +38,7 @@ export default function Home() {
   useEffect(() => {
     dispatch(getCountries());
     dispatch(getActivity());
+    dispatch(getClima());
   }, [dispatch]);
 
   //get info of db

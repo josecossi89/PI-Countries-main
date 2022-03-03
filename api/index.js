@@ -21,10 +21,10 @@
 const server = require("./src/app.js");
 const { conn, Country } = require("./src/db.js");
 const axios = require("axios");
-
+const PORT = process.env.PORT || 8080;
 // Syncing all the models at once.
-conn.sync({ force: false }).then(() => {
-  server.listen(3001, async () => {
+conn.sync({ force: true }).then(() => {
+  server.listen(PORT, async () => {
     let apiURL = await axios.get(`https://restcountries.com/v3.1/all`);
     apiURL = apiURL.data;
 
@@ -41,7 +41,7 @@ conn.sync({ force: false }).then(() => {
       });
     });
 
-    console.log("%s listening at 3001"); // eslint-disable-line no-console
+    console.log(`%s listening at ${PORT}`); // eslint-disable-line no-console
     return apiInfo;
   });
 });
